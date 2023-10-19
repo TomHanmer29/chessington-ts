@@ -17,4 +17,15 @@ export default class Piece {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
     }
+
+    public checkMoveConflicts(board: Board, possibleMoves: Square[], currentSquare: Square){
+        const occupiedSquares: Square[] = []
+        for (let square of possibleMoves){
+            if(board.getPiece(square) != null){
+                possibleMoves.splice(possibleMoves.indexOf(square),1)
+                occupiedSquares.push(square)
+            }
+        }
+        return [possibleMoves,occupiedSquares];
+    }
 }
