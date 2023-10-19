@@ -17,7 +17,7 @@ export default class Square {
 
     //sum of the difference between current square and input square in rows and columns
     public squareDiff(otherSquare: Square){
-        return Math.abs(this.row-otherSquare.row) + Math.abs(this.col-otherSquare.col);
+        return [this.row-otherSquare.row,this.col-otherSquare.col];
     }
 
     public toString() {
