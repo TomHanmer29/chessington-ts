@@ -12,11 +12,25 @@ export default class Bishop extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
-        for (let rowNum = currentSquare.row; rowNum < gameSettings.BOARD_SIZE; rowNum++) {
-            for (let colNum = currentSquare.col; colNum < gameSettings.BOARD_SIZE; colNum++) {
-               if()
-            }
+        for (let squareNum = 1; squareNum < gameSettings.BOARD_SIZE; squareNum++) {
+               if(currentSquare.row+squareNum<gameSettings.BOARD_SIZE){
+                   if(currentSquare.col+squareNum<gameSettings.BOARD_SIZE){
+                       possibleMoves.push(new Square(currentSquare.row+squareNum,currentSquare.col+squareNum));
+                   }
+                   if(currentSquare.col-squareNum>=0){
+                       possibleMoves.push(new Square(currentSquare.row+squareNum,currentSquare.col-squareNum));
+                   }
+               }
+                if(currentSquare.row-squareNum>=0){
+                    if(currentSquare.col+squareNum<gameSettings.BOARD_SIZE){
+                        possibleMoves.push(new Square(currentSquare.row-squareNum,currentSquare.col+squareNum));
+                    }
+                    if(currentSquare.col-squareNum>=0){
+                        possibleMoves.push(new Square(currentSquare.row-squareNum,currentSquare.col-squareNum));
+                    }
+                }
         }
+        console.log(possibleMoves)
         return possibleMoves;
     }
 }
