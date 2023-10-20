@@ -12,18 +12,39 @@ export default class Rook extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
+        let blockFlags = [false,false,false,false]
         for (let squareNum = 1; this.checkIsInBoard(squareNum); squareNum++) {
             if(this.checkIsInBoard(currentSquare.row+squareNum)){
-                possibleMoves.push(new Square(currentSquare.row+squareNum, currentSquare.col))
+                if(board.getPiece(Square.at(currentSquare.row+squareNum,currentSquare.col))===undefined && !blockFlags[0]) {
+                    possibleMoves.push(new Square(currentSquare.row + squareNum, currentSquare.col))
+                }
+                else{
+                    blockFlags[0] = true
+                }
             }
             if(this.checkIsInBoard(currentSquare.row-squareNum)){
-                possibleMoves.push(new Square(currentSquare.row-squareNum, currentSquare.col))
+                if(board.getPiece(Square.at(currentSquare.row-squareNum,currentSquare.col))===undefined && !blockFlags[1]) {
+                    possibleMoves.push(new Square(currentSquare.row-squareNum, currentSquare.col))
+                }
+                else{
+                    blockFlags[1] = true
+                }
             }
             if(this.checkIsInBoard(currentSquare.col+squareNum)){
-                possibleMoves.push(new Square(currentSquare.row, currentSquare.col+squareNum))
+                if(board.getPiece(Square.at(currentSquare.row,currentSquare.col+squareNum))===undefined && !blockFlags[2]) {
+                    possibleMoves.push(new Square(currentSquare.row, currentSquare.col+squareNum))
+                }
+                else{
+                    blockFlags[2] = true
+                }
             }
             if(this.checkIsInBoard(currentSquare.col-squareNum)){
-                possibleMoves.push(new Square(currentSquare.row, currentSquare.col-squareNum))
+                if(board.getPiece(Square.at(currentSquare.row,currentSquare.col-squareNum))===undefined && !blockFlags[3]) {
+                    possibleMoves.push(new Square(currentSquare.row, currentSquare.col-squareNum))
+                }
+                else{
+                    blockFlags[3] = true
+                }
             }
         }
         return possibleMoves;
