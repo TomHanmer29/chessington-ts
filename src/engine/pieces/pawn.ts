@@ -31,7 +31,7 @@ export default class Pawn extends Piece {
         let newPossibleMoves = possibleMoves.filter((square) => !occupiedMoves.includes(square));
         //if there is a piece in front, remove all possible moves
         for(let square of occupiedMoves){
-            if(square.squareDiff(currentSquare)==1){
+            if(Math.abs(square.squareDiff(currentSquare)[0])==1){
                 newPossibleMoves = []
             }
         }
