@@ -46,4 +46,8 @@ export default class Knight extends Piece {
         }
         return possibleMoves;
     }
+
+    public isKing(){
+        return false
+    }
 }

@@ -38,4 +38,8 @@ export default class King extends Piece {
         }
         return possibleMoves;
     }
+
+    public isKing(){
+        return true
+    }
 }

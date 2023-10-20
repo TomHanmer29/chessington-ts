@@ -81,4 +81,8 @@ export default class Queen extends Piece {
         }
         return possibleMoves;
     }
+
+    public isKing(){
+        return false
+    }
 }

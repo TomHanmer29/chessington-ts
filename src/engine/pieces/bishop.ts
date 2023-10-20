@@ -53,4 +53,8 @@ export default class Bishop extends Piece {
         }
         return possibleMoves;
     }
+
+    public isKing(){
+        return false
+    }
 }

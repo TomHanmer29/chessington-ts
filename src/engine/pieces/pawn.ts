@@ -30,6 +30,10 @@ export default class Pawn extends Piece {
         return this.checkMoveConflicts(board,possibleMoves, currentSquare);
     }
 
+    public isKing(){
+        return false
+    }
+
     public checkMoveConflicts(board: Board, possibleMoves: Square[],currentSquare: Square) {
         let occupiedMoves = super.checkMoveConflicts(board, possibleMoves, currentSquare);
         let newPossibleMoves = possibleMoves.filter((square) => !occupiedMoves.includes(square));

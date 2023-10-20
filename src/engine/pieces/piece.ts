@@ -23,6 +23,10 @@ export default class Piece {
         return(currentValue < gameSettings.BOARD_SIZE && currentValue>=0);
     }
 
+    public isKing(){
+        return false
+    }
+
     public checkMoveConflicts(board: Board, possibleMoves: Square[], currentSquare: Square){
         return possibleMoves.filter((square) => board.getPiece(square) != null);
     }
