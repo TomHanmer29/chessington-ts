@@ -23,6 +23,18 @@ export default class Pawn extends Piece {
                 possibleMoves.push(new Square(currentSquare.row - 2, currentSquare.col));
             }
         }
-        return possibleMoves;
+        return this.checkMoveConflicts(board,possibleMoves, currentSquare);
+    }
+
+    public checkMoveConflicts(board: Board, possibleMoves: Square[],currentSquare: Square) {
+        let occupiedMoves = super.checkMoveConflicts(board, possibleMoves, currentSquare);
+        let newPossibleMoves = possibleMoves.filter((square) => !occupiedMoves.includes(square));
+        //if there is a piece in front, remove all possible moves
+        for(let square of occupiedMoves){
+            if(square.squareDiff(currentSquare)==1){
+                newPossibleMoves = []
+            }
+        }
+        return newPossibleMoves
     }
 }

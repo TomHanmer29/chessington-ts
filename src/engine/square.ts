@@ -15,6 +15,11 @@ export default class Square {
         return !!otherSquare && this.row === otherSquare.row && this.col === otherSquare.col;
     }
 
+    //sum of the difference between current square and input square in rows and columns
+    public squareDiff(otherSquare: Square){
+        return Math.abs(this.row-otherSquare.row) + Math.abs(this.col-otherSquare.col);
+    }
+
     public toString() {
         return `Row ${this.row}, Col ${this.col}`;
     }
