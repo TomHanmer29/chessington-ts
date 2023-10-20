@@ -12,12 +12,18 @@ export default class Rook extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
-        for (let squareNum = 0; squareNum < gameSettings.BOARD_SIZE; squareNum++) {
-            if(squareNum!=currentSquare.row){
-                possibleMoves.push(new Square(squareNum, currentSquare.col));
+        for (let squareNum = 1; this.checkIsInBoard(squareNum); squareNum++) {
+            if(this.checkIsInBoard(currentSquare.row+squareNum)){
+                possibleMoves.push(new Square(currentSquare.row+squareNum, currentSquare.col))
             }
-            if(squareNum!=currentSquare.col){
-                possibleMoves.push(new Square(currentSquare.row, squareNum));
+            if(this.checkIsInBoard(currentSquare.row-squareNum)){
+                possibleMoves.push(new Square(currentSquare.row-squareNum, currentSquare.col))
+            }
+            if(this.checkIsInBoard(currentSquare.col+squareNum)){
+                possibleMoves.push(new Square(currentSquare.row, currentSquare.col+squareNum))
+            }
+            if(this.checkIsInBoard(currentSquare.col-squareNum)){
+                possibleMoves.push(new Square(currentSquare.row, currentSquare.col-squareNum))
             }
         }
         return possibleMoves;

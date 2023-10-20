@@ -1,6 +1,7 @@
 import Player from '../player';
 import Board from '../board';
 import Square from '../square';
+import gameSettings from "../gameSettings";
 
 export default class Piece {
     public player: Player;
@@ -18,14 +19,11 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
+    public checkIsInBoard(currentValue: number){
+        return(currentValue < gameSettings.BOARD_SIZE && currentValue>=0);
+    }
+
     public checkMoveConflicts(board: Board, possibleMoves: Square[], currentSquare: Square){
-        const occupiedSquares: Square[] = []
-        for (let square of possibleMoves){
-            if(board.getPiece(square) != null){
-                possibleMoves.splice(possibleMoves.indexOf(square),1)
-                occupiedSquares.push(square)
-            }
-        }
-        return [possibleMoves,occupiedSquares];
+        return possibleMoves.filter((square) => board.getPiece(square) != null);
     }
 }

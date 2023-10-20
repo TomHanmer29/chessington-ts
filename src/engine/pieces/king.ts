@@ -12,28 +12,28 @@ export default class King extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
-        if(currentSquare.row+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.row+1)){
             possibleMoves.push(new Square(currentSquare.row+1,currentSquare.col))
-            if(currentSquare.col+1<gameSettings.BOARD_SIZE){
+            if(this.checkIsInBoard(currentSquare.col+1)){
                 possibleMoves.push(new Square(currentSquare.row+1,currentSquare.col+1))
             }
-            if(currentSquare.col-1>=0){
+            if(this.checkIsInBoard(currentSquare.col-1)){
                 possibleMoves.push(new Square(currentSquare.row+1,currentSquare.col-1))
             }
         }
         if(currentSquare.row-1>=0){
             possibleMoves.push(new Square(currentSquare.row-1,currentSquare.col))
-            if(currentSquare.col+1<gameSettings.BOARD_SIZE){
+            if(this.checkIsInBoard(currentSquare.col+1)){
                 possibleMoves.push(new Square(currentSquare.row-1,currentSquare.col+1))
             }
-            if(currentSquare.col-1>=0){
+            if(this.checkIsInBoard(currentSquare.col-1)){
                 possibleMoves.push(new Square(currentSquare.row-1,currentSquare.col-1))
             }
         }
-        if(currentSquare.col+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.col+1)){
             possibleMoves.push(new Square(currentSquare.row,currentSquare.col+1))
         }
-        if(currentSquare.col-1>=0){
+        if(this.checkIsInBoard(currentSquare.col-1)){
             possibleMoves.push(new Square(currentSquare.row,currentSquare.col-1))
         }
         return possibleMoves;

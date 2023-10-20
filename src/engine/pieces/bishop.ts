@@ -12,20 +12,20 @@ export default class Bishop extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
-        for (let squareNum = 1; squareNum < gameSettings.BOARD_SIZE; squareNum++) {
-               if(currentSquare.row+squareNum<gameSettings.BOARD_SIZE){
-                   if(currentSquare.col+squareNum<gameSettings.BOARD_SIZE){
+        for (let squareNum = 1; this.checkIsInBoard(squareNum); squareNum++) {
+               if(this.checkIsInBoard(currentSquare.row+squareNum)){
+                   if(this.checkIsInBoard(currentSquare.col+squareNum)){
                        possibleMoves.push(new Square(currentSquare.row+squareNum,currentSquare.col+squareNum));
                    }
-                   if(currentSquare.col-squareNum>=0){
+                   if(this.checkIsInBoard(currentSquare.col-squareNum)){
                        possibleMoves.push(new Square(currentSquare.row+squareNum,currentSquare.col-squareNum));
                    }
                }
-                if(currentSquare.row-squareNum>=0){
-                    if(currentSquare.col+squareNum<gameSettings.BOARD_SIZE){
+                if(this.checkIsInBoard(currentSquare.row-squareNum)){
+                    if(this.checkIsInBoard(currentSquare.col+squareNum)){
                         possibleMoves.push(new Square(currentSquare.row-squareNum,currentSquare.col+squareNum));
                     }
-                    if(currentSquare.col-squareNum>=0){
+                    if(this.checkIsInBoard(currentSquare.col-squareNum)){
                         possibleMoves.push(new Square(currentSquare.row-squareNum,currentSquare.col-squareNum));
                     }
                 }

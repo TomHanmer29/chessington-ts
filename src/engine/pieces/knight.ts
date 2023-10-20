@@ -12,35 +12,35 @@ export default class Knight extends Piece {
     public getAvailableMoves(board: Board) {
         const currentSquare = board.findPiece(this)
         const possibleMoves: Square[] = []
-        if(currentSquare.row+2<gameSettings.BOARD_SIZE){
-            if(currentSquare.col+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.row+2)){
+            if(this.checkIsInBoard(currentSquare.col+1)){
                 possibleMoves.push(new Square(currentSquare.row+2,currentSquare.col+1));
             }
-            if(currentSquare.col-1>=0){
+            if(this.checkIsInBoard(currentSquare.col-1)){
                 possibleMoves.push(new Square(currentSquare.row+2,currentSquare.col-1));
             }
         }
-        if(currentSquare.row-2>=0){
-            if(currentSquare.col+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.row-2)){
+            if(this.checkIsInBoard(currentSquare.col+1)){
                 possibleMoves.push(new Square(currentSquare.row-2,currentSquare.col+1));
             }
-            if(currentSquare.col-1>=0){
+            if(this.checkIsInBoard(currentSquare.col-1)){
                 possibleMoves.push(new Square(currentSquare.row-2,currentSquare.col-1));
             }
         }
-        if(currentSquare.col+2<gameSettings.BOARD_SIZE){
-            if(currentSquare.row+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.col+2)){
+            if(this.checkIsInBoard(currentSquare.row+1)){
                 possibleMoves.push(new Square(currentSquare.row+1,currentSquare.col+2));
             }
-            if(currentSquare.row-1>=0){
+            if(this.checkIsInBoard(currentSquare.row-1)){
                 possibleMoves.push(new Square(currentSquare.row-1,currentSquare.col+2));
             }
         }
-        if(currentSquare.col-2>=0){
-            if(currentSquare.row+1<gameSettings.BOARD_SIZE){
+        if(this.checkIsInBoard(currentSquare.col-2)){
+            if(this.checkIsInBoard(currentSquare.row+1)){
                 possibleMoves.push(new Square(currentSquare.row+1,currentSquare.col-2));
             }
-            if(currentSquare.row-1>=0){
+            if(this.checkIsInBoard(currentSquare.row-1)){
                 possibleMoves.push(new Square(currentSquare.row-1,currentSquare.col-2));
             }
         }
